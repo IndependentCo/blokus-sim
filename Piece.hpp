@@ -8,6 +8,7 @@
 
 #ifndef Piece_
 #define Piece_
+#include <vector>
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)
@@ -25,6 +26,7 @@ public:
     void reflect(bool horiz);
     int size();
     Piece(int piece_type, int player);
+    vector<vector<int>> getCoords();
 protected:
     void rotate_180();
     int player;
