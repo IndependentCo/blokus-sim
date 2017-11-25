@@ -50,5 +50,10 @@ int main() {
     cout << endl;
     cout << test1.size();
     cout << endl;
+    vector<vector<int>> coords = test1.getCoords();
+    for(int i=0;i<coords.size();i++){
+      vector<int> point = coords[i];
+      cout << "(" << point[0] << "," << point[1] <<")" << endl;
+    }
     return 0;
 }
