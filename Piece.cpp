@@ -9,6 +9,7 @@
 #include <iostream>
 #include "Piece.hpp"
 #include "PiecePriv.hpp"
+#include <vector>
 
 using namespace std;
 
@@ -370,6 +371,22 @@ int Piece::size() {
     }
     return count;
 } //end size
+
+//A function that returns the coordinates of each square in the piece as a 2d vector (list of (x,y) coordinates)
+vector<vector<int>> Piece::getCoords() {
+vector<vector<int>> points;
+for(int i=0; i<height; i++){
+	for(int j=0; j<width; j++){
+		if(coords[i,j]!=0){
+		  vector<int> currpoint;
+		  currpoint.push_back(i);
+		  currpoint.push_back(j);
+		  points.push_back(currpoint);
+		}
+	}
+ }
+return points;
+}
 
 
 
