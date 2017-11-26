@@ -377,7 +377,7 @@ vector<vector<int>> Piece::getCoords() {
 vector<vector<int>> points;
 for(int i=0; i<height; i++){
 	for(int j=0; j<width; j++){
-		if(coords[i,j]!=0){
+		if(coords[i][j]!=0){
 		  vector<int> currpoint;
 		  currpoint.push_back(i);
 		  currpoint.push_back(j);
