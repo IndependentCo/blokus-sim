@@ -25,3 +25,12 @@ int Board::placePiece(Piece piece, int x, int y, int player){
   }
   return 0;
 }
+
+void Board::print(){
+  for(int i=0;i<20;i++){
+    for(int j=0;j<20;j++){
+      cout << boardmatrix[i][j] << " ";
+    }
+    cout << endl;
+  }
+}
