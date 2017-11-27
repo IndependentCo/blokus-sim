@@ -1,2 +1,2 @@
 # blokus-sim
-frasca eats ass
+A simple blokus simulator for statistical analysis.
