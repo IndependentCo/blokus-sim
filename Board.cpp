@@ -14,3 +14,14 @@ Board::Board(){
     }
   }
 }
+
+int Board::placePiece(Piece piece, int x, int y, int player){
+  vector<vector<int>> squares = piece.getCoords();
+  for(int i=0;i<squares.size();i++){
+    vector<int> currsquare = squares[i];
+    if(x+currpiece[0] >=20 || y+currpiece[1] >=20)
+      return 1;
+    boardmatrix[x+currpiece[0]][y+currpiece[1]] = player;
+  }
+  return 0;
+}
