@@ -34,3 +34,26 @@ void Board::print(){
     cout << endl;
   }
 }
+
+Board::isLegalMove(Piece piece, int x, int y, int player) {
+    vector<vector<int>> squares = piece.getCoords();
+    for(int i = 0, i < squares.size(); i++) {
+        vector<int> currsquare = squares[i];
+        // check adjacent
+        if(boardmatrix[currsquare[0] - 1][currsquare[1]] == 0 && boardmatrix[currsquare[0] + 1][currsquare[1]]
+           boardmatrix[currsquare[0]][currsquare[1] - 1] == 0 && boardmatrix[currsquare[0]][currsquare[1] + 1]) {
+            adjacent = true;
+        }
+        if(boardmatrix[currsquare[0] - 1][currsquare[1] - 1] == player ||
+           boardmatrix[currsquare[0] - 1][currsquare[1] + 1] == player ||
+           boardmatrix[currsquare[0] + 1][currsquare[1] - 1] == player ||
+           boardmatrix[currsquare[0] + 1][currsquare[1] + 1] == player) {
+            diagonal = true;
+        }
+    }
+    if(!adjacent && diagonal) {
+        return true;
+    } else {
+        return false;
+    }
+}
