@@ -51,8 +51,8 @@ bool Board::isLegalMove(Piece piece, int x, int y, int player) {
 	if(boardmatrix[currx][curry]!=0)
 	  return false;
         // check adjacent
-        if(boardmatrix[currx - 1][curry] != player && boardmatrix[currx + 1][curry] != player && 
-           boardmatrix[currx][curry - 1] != player && boardmatrix[currx][curry + 1] != player) {
+        if(boardmatrix[currx - 1][curry] == player || boardmatrix[currx + 1][curry] == player || 
+           boardmatrix[currx][curry - 1] == player || boardmatrix[currx][curry + 1] == player) {
 	  return false;
         }
         if(boardmatrix[currx - 1][curry - 1] == player ||
@@ -64,5 +64,6 @@ bool Board::isLegalMove(Piece piece, int x, int y, int player) {
     }
   return diagonal;
 }
+
 
 
