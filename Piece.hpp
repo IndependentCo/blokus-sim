@@ -26,7 +26,7 @@ public:
     void reflect(bool horiz);
     int size();
     Piece(int piece_type, int player);
-    vector<vector<int>> getCoords();
+  std::vector<std::vector<int>> getCoords();
 protected:
     void rotate_180();
     int player;

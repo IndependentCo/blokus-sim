@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include "Piece.hpp"
-#include "PiecePriv.hpp"
 #include <vector>
 
 using namespace std;

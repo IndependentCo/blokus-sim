@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "Piece.cpp"
+#include "Board.cpp"
 
 using namespace std;
 
@@ -55,5 +56,23 @@ int main() {
       vector<int> point = coords[i];
       cout << "(" << point[0] << "," << point[1] <<")" << endl;
     }
+    Board board = Board();
+    bool isPlaced = false;
+    board.placePiece(test1,0,0,2);
+    for(int i=8;i<10;i++){
+      test1 = Piece(i+1,2);
+      for(int n=1;n<20;n++){
+	for(int m=1;m<20;m++){
+	  if(board.isLegalMove(test1,n,m,2)){
+	    board.placePiece(test1,n,m,2);
+	    isPlaced = true;
+	    break;
+	  }
+	}
+	if(isPlaced)
+	  break;
+      }
+    }
+    board.print();
     return 0;
 }

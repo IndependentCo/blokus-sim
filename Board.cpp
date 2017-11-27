@@ -9,9 +9,21 @@ using namespace std;
 Board::Board(){
   for(int i=0;i<20;i++){
     for(int j=0;j<20;j++){
-      boardMatrix[i][j] = 0;
+      boardmatrix[i][j] = 0;
     }
   }
+}
+
+int Board::placePiece(Piece piece, int x, int y, int player){
+  vector<vector<int>> squares = piece.getCoords();
+  vector<int> currsquare;
+  for(int i=0;i<squares.size();i++){
+    currsquare = squares[i];
+    if((x+currsquare[0]) >=20 || (y+currsquare[1]) >=20)
+      return 1;
+    boardmatrix[(x+currsquare[0])][(y+currsquare[1])] = player;
+  }
+  return 0;
 }
 
 void Board::print(){
@@ -24,24 +36,33 @@ void Board::print(){
 }
 
 bool Board::isLegalMove(Piece piece, int x, int y, int player) {
-    vector<vector<int>> squares = piece.getCoords();
-    for(int i = 0, i < squares.size(); i++) {
+  bool diagonal = false;
+  vector<vector<int>> squares = piece.getCoords();
+  for(int i = 0; i < squares.size(); i++) {
         vector<int> currsquare = squares[i];
+	int currx = x + currsquare[0];
+	int curry = y + currsquare[1];
+	//check in bounds
+	if(currx >=20 || currx <0)
+	  return false;
+	if(curry >=20 || curry <0)
+	  return false;
+	//check if square is empty
+	if(boardmatrix[currx][curry]!=0)
+	  return false;
         // check adjacent
-        if(boardmatrix[currsquare[0] - 1][currsquare[1]] == 0 && boardmatrix[currsquare[0] + 1][currsquare[1]]
-           boardmatrix[currsquare[0]][currsquare[1] - 1] == 0 && boardmatrix[currsquare[0]][currsquare[1] + 1]) {
-            adjacent = true;
+        if(boardmatrix[currx - 1][curry] != player && boardmatrix[currx + 1][curry] != player && 
+           boardmatrix[currx][curry - 1] != player && boardmatrix[currx][curry + 1] != player) {
+	  return false;
         }
-        if(boardmatrix[currsquare[0] - 1][currsquare[1] - 1] == player ||
-           boardmatrix[currsquare[0] - 1][currsquare[1] + 1] == player ||
-           boardmatrix[currsquare[0] + 1][currsquare[1] - 1] == player ||
-           boardmatrix[currsquare[0] + 1][currsquare[1] + 1] == player) {
+        if(boardmatrix[currx - 1][curry - 1] == player ||
+           boardmatrix[currx - 1][curry + 1] == player ||
+           boardmatrix[currx + 1][curry - 1] == player ||
+           boardmatrix[currx + 1][curry + 1] == player) {
             diagonal = true;
         }
     }
-    if(!adjacent && diagonal) {
-        return true;
-    } else {
-        return false;
-    }
+  return diagonal;
 }
+
+
