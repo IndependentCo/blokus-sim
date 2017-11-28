@@ -16,6 +16,16 @@ void AI::place_randomly(Board board, int player) {
     }
     //get piece
     Piece curr_piece(choice + 1, player);
+    //rotate and reflect randomly
+    for(int i = 0; i<rand()%4; i++) {
+        int random = rand()%6;
+        curr_piece.rotate(90);
+        if(random < 2) {
+            curr_piece.reflect(true);
+        } else if (random < 4) {
+            curr_piece.reflect(false);
+        }
+    }
     //place it randomly
     while(true) {
         x = rand()%20;
