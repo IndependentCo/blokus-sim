@@ -14,8 +14,9 @@ Board::Board(){
   }
 }
 
-int Board::placePiece(Piece piece, int x, int y, int player){
+int Board::placePiece(Piece piece, int x, int y){
   vector<vector<int>> squares = piece.getCoords();
+  int player = piece.getPlayer();
   vector<int> currsquare;
   for(int i=0;i<squares.size();i++){
     currsquare = squares[i];
@@ -35,8 +36,9 @@ void Board::print(){
   }
 }
 
-bool Board::isLegalMove(Piece piece, int x, int y, int player) {
+bool Board::isLegalMove(Piece piece, int x, int y) {
   bool diagonal = false;
+  int player = piece.getPlayer();
   vector<vector<int>> squares = piece.getCoords();
   for(int i = 0; i < squares.size(); i++) {
         vector<int> currsquare = squares[i];
@@ -55,15 +57,41 @@ bool Board::isLegalMove(Piece piece, int x, int y, int player) {
            boardmatrix[currx][curry - 1] == player || boardmatrix[currx][curry + 1] == player) {
 	  return false;
         }
-        if(boardmatrix[currx - 1][curry - 1] == player ||
-           boardmatrix[currx - 1][curry + 1] == player ||
-           boardmatrix[currx + 1][curry - 1] == player ||
-           boardmatrix[currx + 1][curry + 1] == player) {
-            diagonal = true;
-        }
+	//check diagonal
+	if(isDiagonal(currx, curry, player))
+	  diagonal = true;
     }
   return diagonal;
 }
 
+
+  bool Board::isDiagonal(int x,int y, int player){
+    if(x==0 && y==0 && player==1)//corner conditionals
+      return true;
+    else if(x==0 && y==19 && player==2)
+      return true;
+    else if(x==19 && y==0 && player==3)
+      return true;   
+    else if(x==19 && y==19 && player==4)
+      return true;
+    else if(onBoard(x-1,y-1) && boardmatrix[x-1][y-1]==player)//diagonal conditions
+      return true;
+    else if(onBoard(x-1,y+1) && boardmatrix[x-1][y+1]==player)
+      return true;
+    else if(onBoard(x+1,y-1) && boardmatrix[x+1][y-1]==player)
+      return true;
+    else if(onBoard(x+1,y+1) && boardmatrix[x+1][y+1]==player)
+      return true;
+    else
+      return false;	
+  }
+    
+
+  bool Board::onBoard(int x, int y){
+    if(x<0 || x>=20 || y<0 || y>=20)
+      return false;
+    return true;
+  }
+    
 
 

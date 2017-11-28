@@ -19,20 +19,21 @@ const int maxheight = 5;
 class Piece
 {
 public:
-    Piece();
-    void initialize(int piece_type);
-    void print();
-    void rotate(int degrees);
-    void reflect(bool horiz);
-    int size();
-    Piece(int piece_type, int player);
+  Piece();
+  void initialize(int piece_type);
+  void print();
+  void rotate(int degrees);
+  void reflect(bool horiz);
+  int getPlayer();
+  int size();
+  Piece(int piece_type, int player);
   std::vector<std::vector<int>> getCoords();
 protected:
-    void rotate_180();
-    int player;
-    int height;
-    int width;
-    int coords[maxwidth][maxheight];
+  void rotate_180();
+  int player;
+  int height;
+  int width;
+  int coords[maxwidth][maxheight];
 };
 
 #pragma GCC visibility pop

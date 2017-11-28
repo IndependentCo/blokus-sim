@@ -58,14 +58,13 @@ int main() {
     }
     Board board = Board();
     bool isPlaced = false;
-    board.placePiece(test1,0,0,2);
-    for(int i=0;i<10;i++){
-      test1 = Piece(i+1,2);
+    for(int i=0;i<21;i++){
+      test1 = Piece(i,2);
       for(int n=0;n<20;n++){
 	isPlaced = false;
 	for(int m=0;m<20;m++){
-	  if(board.isLegalMove(test1,n,m,2)){
-	    board.placePiece(test1,n,m,2);
+	  if(board.isLegalMove(test1,n,m)){
+	    board.placePiece(test1,n,m);
 	    isPlaced = true;
 	    break;
 	  }
@@ -75,6 +74,7 @@ int main() {
       }
     }
     board.print();
+    
+
     return 0;
 }
-

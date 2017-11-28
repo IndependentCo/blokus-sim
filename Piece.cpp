@@ -38,18 +38,18 @@ void Piece::initialize(int piece_type) {
      Post: Initializes piece as one of 21 possible pieces, stored as a 2D array
      *************************************************************************************************/
     switch(piece_type) {
-        case 1:
+        case 0:
             height = 1;
             width = 1;
             coords[0][0] = player;
             break;
-        case 2:
+        case 1:
             height = 1;
             width = 2;
             coords[0][0] = player;
             coords[0][1] = player;
             break;
-        case 3:
+        case 2:
             height = 2;
             width = 2;
             for(int i = 0; i < height; i++) {
@@ -59,14 +59,14 @@ void Piece::initialize(int piece_type) {
             }
             coords[1][0] = 0;
             break;
-        case 4:
+        case 3:
             height = 1;
             width = 3;
             for(int i = 0; i < width; i++) {
                 coords[0][i] = player;
             }
             break;
-        case 5:
+        case 4:
             height = 2;
             width = 2;
             for(int i = 0; i < height; i++) {
@@ -75,7 +75,7 @@ void Piece::initialize(int piece_type) {
                 }
             }
             break;
-        case 6:
+        case 5:
             height = 2;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -86,14 +86,14 @@ void Piece::initialize(int piece_type) {
             coords[0][0] = 0;
             coords[0][2] = 0;
             break;
-        case 7:
+        case 6:
             height = 1;
             width = 4;
             for(int i = 0; i < width; i++) {
                 coords[0][i] = player;
             }
             break;
-        case 8:
+        case 7:
             height = 2;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -104,7 +104,7 @@ void Piece::initialize(int piece_type) {
             coords[0][0] = 0;
             coords[0][1] = 0;
             break;
-        case 9:
+        case 8:
             height = 2;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -115,7 +115,7 @@ void Piece::initialize(int piece_type) {
             coords[0][0] = 0;
             coords[1][2] = 0;
             break;
-        case 10:
+        case 9:
             height = 2;
             width = 4;
             for(int i = 0; i < height; i++) {
@@ -127,7 +127,7 @@ void Piece::initialize(int piece_type) {
             coords[0][2] = 0;
             coords[0][3] = 0;
             break;
-        case 11:
+        case 10:
             height = 3;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -140,7 +140,7 @@ void Piece::initialize(int piece_type) {
             coords[1][0] = 0;
             coords[1][2] = 0;
             break;
-        case 12:
+        case 11:
             height = 3;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -153,7 +153,7 @@ void Piece::initialize(int piece_type) {
             coords[1][1] = 0;
             coords[1][2] = 0;
             break;
-        case 13:
+        case 12:
             height = 2;
             width = 4;
             for(int i = 0; i < height; i++) {
@@ -165,7 +165,7 @@ void Piece::initialize(int piece_type) {
             coords[1][2] = 0;
             coords[1][3] = 0;
             break;
-        case 14:
+        case 13:
             height = 3;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -178,14 +178,14 @@ void Piece::initialize(int piece_type) {
             coords[2][1] = 0;
             coords[2][2] = 0;
             break;
-        case 15:
+        case 14:
             height = 5;
             width = 1;
             for(int i = 0; i < height; i++) {
                 coords[i][0] = player;
             }
             break;
-        case 16:
+        case 15:
             width = 2;
             height = 3;
             for(int i = 0; i < height; i++) {
@@ -195,7 +195,7 @@ void Piece::initialize(int piece_type) {
             }
             coords[0][1] = 0;
             break;
-        case 17:
+        case 16:
             height = 3;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -208,7 +208,7 @@ void Piece::initialize(int piece_type) {
             coords[2][1] = 0;
             coords[2][2] = 0;
             break;
-        case 18:
+        case 17:
             width = 2;
             height = 3;
             for(int i = 0; i < height; i++) {
@@ -218,7 +218,7 @@ void Piece::initialize(int piece_type) {
             }
             coords[1][1] = 0;
             break;
-        case 19:
+        case 18:
             height = 3;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -231,7 +231,7 @@ void Piece::initialize(int piece_type) {
             coords[2][0] = 0;
             coords[2][2] = 0;
             break;
-        case 20:
+        case 19:
             height = 3;
             width = 3;
             for(int i = 0; i < height; i++) {
@@ -244,7 +244,7 @@ void Piece::initialize(int piece_type) {
             coords[2][0] = 0;
             coords[2][2] = 0;
             break;
-        case 21:
+        case 20:
             height = 2;
             width = 4;
             for(int i = 0; i < height; i++) {
@@ -388,7 +388,9 @@ return points;
 }
 
 
-
+int Piece::getPlayer(){
+  return player;
+}
 
 
 
