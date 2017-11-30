@@ -38,5 +38,7 @@ protected:
   int piecetype;
 };
 
+bool operator == (const Piece &piece, const Piece &piece1);
+
 #pragma GCC visibility pop
 #endif

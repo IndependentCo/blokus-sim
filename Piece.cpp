@@ -398,6 +398,13 @@ int Piece::getType(){
   return piecetype;
 }
 
+bool operator == (const Piece &piece, const Piece &piece1){
+  if(piece.getCoords() == piece1.getCoords())
+    return true;
+  else
+    return false;
+}
+
 
 
 

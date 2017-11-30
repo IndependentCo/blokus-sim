@@ -28,3 +28,10 @@ std::vector<int> Move::ReturnXY(){
   xy.push_back(y);
   return(xy);
 }
+
+bool operator == (const Move &move,const Move &move1){
+  if(move.ReturnPiece() == move1.ReturnPiece() && move.ReturnX == move1.ReturnX && move.ReturnY()==move1.ReturnY())
+    return true;
+  else
+    return false;
+}
