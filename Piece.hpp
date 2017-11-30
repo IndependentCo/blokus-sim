@@ -28,12 +28,14 @@ public:
   int size();
   Piece(int piece_type, int player);
   std::vector<std::vector<int>> getCoords();
+  int getType();
 protected:
   void rotate_180();
   int player;
   int height;
   int width;
   int coords[maxwidth][maxheight];
+  int piecetype;
 };
 
 #pragma GCC visibility pop

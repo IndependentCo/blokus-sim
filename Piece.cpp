@@ -21,6 +21,7 @@ Piece::Piece() {
     height = 0;
     width = 0;
     coords[0][0] = 0;
+    piecetype = -1;
 } //constructor
 
 Piece::Piece(int piece_type, int who) {
@@ -37,6 +38,7 @@ void Piece::initialize(int piece_type) {
      Pre: None
      Post: Initializes piece as one of 21 possible pieces, stored as a 2D array
      *************************************************************************************************/
+  piecetype = piece_type;
     switch(piece_type) {
         case 0:
             height = 1;
@@ -390,6 +392,10 @@ return points;
 
 int Piece::getPlayer(){
   return player;
+}
+
+int Piece::getType(){
+  return piecetype;
 }
 
 

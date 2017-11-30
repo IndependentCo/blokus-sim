@@ -1,4 +1,5 @@
 // AI.hpp
+
 using namespace std;
 
 class AI
@@ -9,6 +10,10 @@ public:
   void place_biggest(Board board, int player);
   void aim_for_center(Board board, int player);
   Move choose_random_move_from_vector(Board board, int player);
+  bool isDone();
+  int returnArsenalSize();
+  bool isDuplicateMove(vector<Move> previousmoves, Move currmove);
 protected:
-  Piece arsenal[21];
+  std::vector<Piece>  arsenal;
+  bool done;
 };

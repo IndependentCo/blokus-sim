@@ -15,59 +15,24 @@
 using namespace std;
 
 int main() {
-    for(int i = 1; i <= 21; i++) {
-        Piece test(i, 3);
-        test.print();
-        cout << endl;
-        cout << test.size() << endl;
-    }
-    Piece test1(16, 4);
-    cout << "Starting state." << endl;
-    test1.print();
-    cout << endl;
-    cout << test1.size();
-    cout << endl;
-    test1.rotate(90);
-    cout << "Rotated 90 degrees." << endl;
-    test1.print();
-    cout << endl;
-    cout << test1.size();
-    cout << endl;
-    test1.rotate(180);
-    cout << "Rotated 180 degrees." << endl;
-    test1.print();
-    cout << endl;
-    cout << test1.size();
-    cout << endl;
-    test1.reflect(true);
-    cout << "Reflected over the horizontal." << endl;
-    test1.print();
-    cout << endl;
-    test1.reflect(false);
-    cout << "Reflected over the vertical." << endl;
-    test1.print();
-    cout << endl;
-    test1.rotate(270);
-    cout << "Rotated 270 degrees." << endl;
-    test1.print();
-    cout << endl;
-    cout << test1.size();
-    cout << endl;
-    vector<vector<int>> coords = test1.getCoords();
-    for(int i=0;i<coords.size();i++){
-      vector<int> point = coords[i];
-      cout << "(" << point[0] << "," << point[1] <<")" << endl;
-    }
-
-    Board board = Board();
-    AI player1 = AI(1);
-    AI player2 = AI(2);
-    AI player3 = AI(3);
-    AI player4 = AI(4);
-    Move currmove; 
+  Board board = Board();
+  AI player1 = AI(1);
+  AI player2 = AI(2);
+  AI player3 = AI(3);
+  AI player4 = AI(4);
+  Move currmove;
+  int count = 0;
+  while(!player1.isDone() && !player2.isDone() && !player3.isDone() && !player4.isDone()){
     currmove = player1.choose_random_move_from_vector(board, 1);
     board.placePiece(currmove.ReturnPiece(),currmove.ReturnX(),currmove.ReturnY());
+    currmove = player2.choose_random_move_from_vector(board, 2);
+    board.placePiece(currmove.ReturnPiece(),currmove.ReturnX(),currmove.ReturnY());
+    currmove = player3.choose_random_move_from_vector(board, 3);
+    board.placePiece(currmove.ReturnPiece(),currmove.ReturnX(),currmove.ReturnY());
+    currmove = player4.choose_random_move_from_vector(board, 4);
+    board.placePiece(currmove.ReturnPiece(),currmove.ReturnX(),currmove.ReturnY());
     board.print();
-
+    cout << endl;
+    }
     return 0;
 }
