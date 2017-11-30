@@ -7,8 +7,10 @@
 //
 
 #include <iostream>
+#include "Move.cpp"
 #include "Piece.cpp"
 #include "Board.cpp"
+#include "AI.cpp"
 
 using namespace std;
 
@@ -56,25 +58,16 @@ int main() {
       vector<int> point = coords[i];
       cout << "(" << point[0] << "," << point[1] <<")" << endl;
     }
+
     Board board = Board();
-    bool isPlaced = false;
-    for(int i=0;i<21;i++){
-      test1 = Piece(i,2);
-      for(int n=0;n<20;n++){
-	isPlaced = false;
-	for(int m=0;m<20;m++){
-	  if(board.isLegalMove(test1,n,m)){
-	    board.placePiece(test1,n,m);
-	    isPlaced = true;
-	    break;
-	  }
-	}
-	if(isPlaced)
-	  break;
-      }
-    }
+    AI player1 = AI(1);
+    AI player2 = AI(2);
+    AI player3 = AI(3);
+    AI player4 = AI(4);
+    Move currmove; 
+    currmove = player1.choose_random_move_from_vector(board, 1);
+    board.placePiece(currmove.ReturnPiece(),currmove.ReturnX(),currmove.ReturnY());
     board.print();
-    
 
     return 0;
 }
