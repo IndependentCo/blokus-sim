@@ -27,7 +27,8 @@ Move AI::choose_random_move_from_vector(Board board, int player){
         currpiece = arsenal[i];
         for(int x=0; x<20; x++){
             for(int y=0; y<20; y++){
-                for(int rotate=0; rotate<4; rotate++){
+              for(int reflect=0; reflect<2; reflect++){
+                for(int rotate=0; rotate<5; rotate++){
                     if(board.isLegalMove(currpiece,x,y)){
                         move = Move(currpiece,x,y);
                         //if(!isDuplicateMove(resultlist,move)){
@@ -35,6 +36,8 @@ Move AI::choose_random_move_from_vector(Board board, int player){
                         //}
                     }
                     currpiece.rotate(90);
+                  }
+                currpiece.reflect(false);
                 }
             }
         }
