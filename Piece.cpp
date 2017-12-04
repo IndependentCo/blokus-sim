@@ -405,7 +405,17 @@ bool Piece::isEqual(Piece piece){
     return false;
 }
 
+bool Piece::hasSingleSymmetry() {
+    return (piecetype == 2 || piecetype == 5 || piecetype == 8 || piecetype == 10 || piecetype == 11 || piecetype == 13 || piecetype == 16 || piecetype == 17);
+}
 
+bool Piece::hasDoubleSymmetry() {
+    return (piecetype == 1 || piecetype == 3 || piecetype == 6 || piecetype == 14);
+}
+
+bool Piece::hasQuadSymmetry() {
+    return (piecetype == 0 || piecetype == 4 || piecetype == 19);
+}
 
 
 

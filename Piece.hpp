@@ -30,6 +30,9 @@ public:
   std::vector<std::vector<int> > getCoords();
   int getType();
   bool isEqual(Piece piece);
+    bool hasSingleSymmetry();
+    bool hasDoubleSymmetry();
+    bool hasQuadSymmetry();
 protected:
   void rotate_180();
   int player;
