@@ -374,8 +374,8 @@ int Piece::size() {
 } //end size
 
 //A function that returns the coordinates of each square in the piece as a 2d vector (list of (x,y) coordinates)
-vector<vector<int>> Piece::getCoords() {
-vector<vector<int>> points;
+vector<vector<int> > Piece::getCoords() {
+vector<vector<int> > points;
 for(int i=0; i<height; i++){
 	for(int j=0; j<width; j++){
 		if(coords[i][j]!=0){

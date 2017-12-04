@@ -16,7 +16,7 @@ Board::Board(){
 }
 
 int Board::placePiece(Piece piece, int x, int y){
-  vector<vector<int>> squares = piece.getCoords();
+  vector<vector<int> > squares = piece.getCoords();
   int player = piece.getPlayer();
   vector<int> currsquare;
   for(int i=0;i<squares.size();i++){
@@ -40,7 +40,7 @@ void Board::print(){
 bool Board::isLegalMove(Piece piece, int x, int y) {
   bool diagonal = false;
   int player = piece.getPlayer();
-  vector<vector<int>> squares = piece.getCoords();
+  vector<vector<int> > squares = piece.getCoords();
   for(int i = 0; i < squares.size(); i++) {
     vector<int> currsquare = squares[i];
     int currx = x + currsquare[0];

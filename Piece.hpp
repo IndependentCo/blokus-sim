@@ -27,7 +27,7 @@ public:
   int getPlayer();
   int size();
   Piece(int piece_type, int player);
-  std::vector<std::vector<int>> getCoords();
+  std::vector<std::vector<int> > getCoords();
   int getType();
   bool isEqual(Piece piece);
 protected:

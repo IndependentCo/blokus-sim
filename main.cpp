@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstdlib>
 #include "Move.cpp"
 #include "Piece.cpp"
 #include "Board.cpp"
@@ -26,7 +27,12 @@ int main() {
   output.open("Output.txt");
   Move currmove;
   int count = 0;
-  for(int j=0;j<5;j++){
+  for(int j=0;j<1000;j++){
+      board = Board();
+      player1 = AI(1);
+      player2 = AI(2);
+      player3 = AI(3);
+      player4 = AI(4);
     for(int i=0;i<21;i++){
       if(!player1.isDone()){
 	currmove = player1.choose_random_move_from_vector(board, 1);
@@ -45,6 +51,7 @@ int main() {
 	board.placePiece(currmove.ReturnPiece(),currmove.ReturnX(),currmove.ReturnY());
       }
     }
+    board.print();
     board.printToText(output);
   }
   output.close();
