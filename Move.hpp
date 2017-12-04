@@ -8,12 +8,12 @@ public:
   Piece ReturnPiece();
   int ReturnX();
   int ReturnY();
-  std::vector<int> ReturnXY(); 
+  std::vector<int> ReturnXY();
+  bool isEqual(Move move);
 protected:
   Piece piece;
   int x;
   int y;
 };
 
-bool operator == (const Move &move, const Move &move1);
   

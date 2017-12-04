@@ -29,8 +29,8 @@ std::vector<int> Move::ReturnXY(){
   return(xy);
 }
 
-bool operator == (const Move &move,const Move &move1){
-  if(move.ReturnPiece() == move1.ReturnPiece() && move.ReturnX == move1.ReturnX && move.ReturnY()==move1.ReturnY())
+bool Move::isEqual(Move move){
+  if(piece.isEqual(move.ReturnPiece()) && move.ReturnX() == x && move.ReturnY()==y)
     return true;
   else
     return false;

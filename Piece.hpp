@@ -29,6 +29,7 @@ public:
   Piece(int piece_type, int player);
   std::vector<std::vector<int>> getCoords();
   int getType();
+  bool isEqual(Piece piece);
 protected:
   void rotate_180();
   int player;
@@ -38,7 +39,6 @@ protected:
   int piecetype;
 };
 
-bool operator == (const Piece &piece, const Piece &piece1);
 
 #pragma GCC visibility pop
 #endif
