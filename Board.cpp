@@ -19,7 +19,7 @@ int Board::placePiece(Piece piece, int x, int y){
   vector<vector<int> > squares = piece.getCoords();
   int player = piece.getPlayer();
   vector<int> currsquare;
-  for(int i=0;i<squares.size();i++){
+  for(size_t i=0;i<squares.size();i++){
     currsquare = squares[i];
     if((x+currsquare[0]) >=20 || (y+currsquare[1]) >=20)
       return 1;
@@ -41,7 +41,8 @@ bool Board::isLegalMove(Piece piece, int x, int y) {
   bool diagonal = false;
   int player = piece.getPlayer();
   vector<vector<int> > squares = piece.getCoords();
-  for(int i = 0; i < squares.size(); i++) {
+  int s = squares.size();
+  for(int i = 0; i < s; i++) {
     vector<int> currsquare = squares[i];
     int currx = x + currsquare[0];
     int curry = y + currsquare[1];

@@ -22,8 +22,8 @@ Move AI::choose_random_move_from_vector(Board board, int player){
     resultlist.clear();
     Piece currpiece;
     Move move = Move();
-
-    for(int i=0; i<arsenal.size(); i++){
+    int s = arsenal.size();
+    for(int i=0; i<s; i++){
         currpiece = arsenal[i];
         for(int x=0; x<20; x++){
             for(int y=0; y<20; y++){
@@ -51,16 +51,18 @@ Move AI::choose_random_move_from_vector(Board board, int player){
     int u = rand() % length;
     Piece result = resultlist[u].ReturnPiece();
     int type = result.getType();
-    for(int i=0;i<arsenal.size(); i++){
+    int t = arsenal.size();
+    for(int i=0;i<t; i++){
         if(arsenal[i].getType() == type){
             arsenal.erase(arsenal.begin()+i); // removes the chosen piece from arsenal
+            t--;
         }
     }
     return resultlist[u];
 }
 
 bool AI::isDuplicateMove(vector<Move> previousmoves, Move currmove){
-    for(int i=0;i<previousmoves.size();i++){
+    for(size_t i=0;i<previousmoves.size();i++){
         if(currmove.isEqual(previousmoves[i]))
             return true;
     }

@@ -26,7 +26,6 @@ int main() {
   ofstream output;
   output.open("Output.txt");
   Move currmove;
-  int count = 0;
   for(int j=0;j<1000;j++){
       board = Board();
       player1 = AI(1);
