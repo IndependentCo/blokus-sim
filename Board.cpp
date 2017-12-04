@@ -71,9 +71,9 @@ bool Board::isDiagonal(int x,int y, int player){
     return true;
   else if(x==0 && y==19 && player==2)
     return true;
-  else if(x==19 && y==0 && player==3)
+  else if(x==19 && y==0 && player==4)
     return true;   
-  else if(x==19 && y==19 && player==4)
+  else if(x==19 && y==19 && player==3)
     return true;
   else if(onBoard(x-1,y-1) && boardmatrix[x-1][y-1]==player)//diagonal conditions
     return true;
