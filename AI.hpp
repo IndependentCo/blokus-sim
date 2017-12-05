@@ -15,7 +15,10 @@ public:
   bool isDuplicateMove(vector<Move> previousmoves, Move currmove);
   vector<Move> cleanseDuplicates(vector<Move> moves);
   void reset(int player);
+  bool isUnique(vector<Piece> prevpieces, Piece currpiece);
+  void initializeArsenal(int player);
+  void test();
 protected:
-  std::vector<Piece>  arsenal;
+  std::vector<std::vector<Piece> >  arsenal;
   bool done;
 };

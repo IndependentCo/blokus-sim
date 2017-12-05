@@ -4,12 +4,8 @@
 #include <vector>
 
 AI::AI(int player) {
-  Piece piece;
-    for(int i = 0; i < 21; i++) {
-      piece = Piece(i,player);
-      arsenal.push_back(piece);
-    }
-    done = false;
+  initializeArsenal(player);
+  done = false;
 }
 
 Move AI::choose_random_move_from_vector(Board board, int player){
@@ -20,70 +16,30 @@ Move AI::choose_random_move_from_vector(Board board, int player){
   //return resulting <x,y,piece>
   vector<Move> resultlist;
   resultlist.clear();
-  Piece currpiece;
+  vector<Piece> currpiece;
   Move move = Move();
   int s = arsenal.size();
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
-	
-	if(currpiece.hasSingleSymmetry()) {
-	  for(int z = 0; z < 4; z++) {
-	    if(board.isLegalMove(currpiece,x,y)){
-	      move = Move(currpiece,x,y);
-	      //if(!isDuplicateMove(resultlist,move)){
-	      resultlist.push_back(move);
-	      //}
-	    }
-	    if(z%2 == 1) currpiece.reflect(true);
-	    if(z%2 == 0) currpiece.rotate(90);
-	  }
-	} else if(currpiece.hasDoubleSymmetry()) {
-	  if(board.isLegalMove(currpiece,x,y)){
-	    move = Move(currpiece,x,y);
-	    //if(!isDuplicateMove(resultlist,move)){
+	for(int possmove=0; possmove<currpiece.size();possmove++){
+	  if(board.isLegalMove(currpiece[possmove],x,y)){
+	    move = Move(currpiece[possmove],x,y);
 	    resultlist.push_back(move);
-	    //}
 	  }
-	  currpiece.rotate(90);
-	  if(board.isLegalMove(currpiece,x,y)){
-	    move = Move(currpiece,x,y);
-	    //if(!isDuplicateMove(resultlist,move)){
-	    resultlist.push_back(move);
-	    //}
-	  }
-	} else if(currpiece.hasQuadSymmetry()) {
-	  if(board.isLegalMove(currpiece,x,y)){
-	    move = Move(currpiece,x,y);
-	    //if(!isDuplicateMove(resultlist,move)){
-	    resultlist.push_back(move);
-	    //}
-	  }
-	} else { 
-	  for(int reflect=0; reflect<2; reflect++){
-	    for(int rotate=0; rotate<4; rotate++){
-	      if(board.isLegalMove(currpiece,x,y)){
-		move = Move(currpiece,x,y);
-		//if(!isDuplicateMove(resultlist,move)){
-		resultlist.push_back(move);
-		//}
-	      }
-	      currpiece.rotate(90);
-	    }
-	    currpiece.reflect(false);
-	  }
-	}
+	}	
       }
     }
   }
+
   
   int length = resultlist.size();
 
-  for(int i=0;i < length;i++){
-  resultlist[i].ReturnPiece().print();
-  cout << endl;
-  }
+  //for(int i=0;i < length;i++){
+  //resultlist[i].ReturnPiece().print();
+  //cout << endl;
+  //}
   cout << player << " : " << length << endl;
     if(length==0){
         done = true; //no moves left
@@ -96,7 +52,7 @@ Move AI::choose_random_move_from_vector(Board board, int player){
     Piece result = resultlist[u].ReturnPiece();
     int type = result.getType();
     for(int i=0;i<arsenal.size(); i++){
-        if(arsenal[i].getType() == type){
+        if(arsenal[i][1].getType() == type){
             arsenal.erase(arsenal.begin()+i); // removes the chosen piece from arsenal
         }
     }
@@ -123,9 +79,44 @@ int AI::returnArsenalSize(){
 void AI::reset(int player){
   Piece piece;
   arsenal.clear();
-  for(int i = 0; i < 21; i++) {
-    piece = Piece(i,player);
-    arsenal.push_back(piece);
-  }
+  initializeArsenal(player);
   done = false;
 }
+
+bool AI::isUnique(vector<Piece> prevpieces, Piece currpiece){
+  for(int i=0;i<prevpieces.size();i++){
+    if(currpiece.isEqual(prevpieces[i])){
+      return false;
+    }
+  }
+  return true;
+}
+
+void AI::initializeArsenal(int player){
+  Piece piece;
+  vector<Piece> currpieces;
+  for(int i=0; i<21;i++){
+    piece = Piece(i, player);
+    for(int reflect=0; reflect<2; reflect++){
+      for(int rotate=0; rotate<4; rotate++){
+	if(isUnique(currpieces,piece)){
+	  currpieces.push_back(piece);
+	}
+	piece.rotate(90);
+      }
+      piece.reflect(false);
+    }
+    arsenal.push_back(currpieces);
+    currpieces.clear();
+  }
+}
+
+void AI::test(){
+  for(int i=0;i<arsenal.size();i++){
+    for(int j=0;j<arsenal[i].size();j++){
+      arsenal[i][j].print();
+    }
+    cout << "-------------------" << endl;
+  }
+}
+

@@ -38,8 +38,11 @@ void Game::play(int strategy, int iterations) {
                                      currmove.ReturnX(),
                                      currmove.ReturnY());
                 }
+		board.print();
+		cout << endl;
             }
-            board.printToText(output);
+	  
+            board.print();
 	    reset();
         }
         output.close();
