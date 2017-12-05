@@ -1,2 +1,2 @@
 # blokus-sim
-frasca eats ass
+A simple simulator for the board game Blokus.
