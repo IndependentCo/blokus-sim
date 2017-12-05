@@ -8,7 +8,7 @@ public:
   Board();
   int placePiece(Piece piece, int x, int y);
   bool isLegalMove(Piece piece, int x, int y);
-  //void clearBoard();
+  void clearBoard();
   //int getScore(int player);
   //int getWinner();
   void print();

@@ -8,10 +8,10 @@ public:
     void reset();
 private:
     Board board;
-    AI player1(int player);
-    AI player2(int player);
-    AI player3(int player);
-    AI player4(int player);
+  AI player1 = AI(1);
+  AI player2 = AI(2);
+  AI player3 = AI(3);
+  AI player4 = AI(4);
     ofstream output;
 };
     

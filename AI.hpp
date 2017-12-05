@@ -13,6 +13,8 @@ public:
   bool isDone();
   int returnArsenalSize();
   bool isDuplicateMove(vector<Move> previousmoves, Move currmove);
+  vector<Move> cleanseDuplicates(vector<Move> moves);
+  void reset(int player);
 protected:
   std::vector<Piece>  arsenal;
   bool done;

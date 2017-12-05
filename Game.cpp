@@ -4,10 +4,6 @@
 
 Game::Game() {
     board = Board();
-    player1 = AI(1);
-    player2 = AI(2);
-    player3 = AI(3);
-    player4 = AI(4);
 }
 
 void Game::play(int strategy, int iterations) {
@@ -17,7 +13,7 @@ void Game::play(int strategy, int iterations) {
     switch(strategy) {
     case 1:
         for(int j=0;j<iterations;j++){
-            for(int i=0;i<21;i++){
+	  while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
                 if(!player1.isDone()){
                     currmove = player1.choose_random_move_from_vector(board, 1);
                     board.placePiece(currmove.ReturnPiece(),
@@ -44,6 +40,7 @@ void Game::play(int strategy, int iterations) {
                 }
             }
             board.printToText(output);
+	    reset();
         }
         output.close();
         break;
@@ -54,4 +51,8 @@ void Game::play(int strategy, int iterations) {
 
 void Game::reset() {
     board.clearBoard();
+    player1.reset(1);
+    player2.reset(2);
+    player3.reset(3);
+    player4.reset(4);
 }

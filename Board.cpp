@@ -15,6 +15,14 @@ Board::Board(){
   }
 }
 
+void Board::clearBoard(){
+  for(int i=0;i<20;i++){
+    for(int j=0;j<20;j++){
+      boardmatrix[i][j] = 0;
+    }
+  }
+}
+
 int Board::placePiece(Piece piece, int x, int y){
   vector<vector<int> > squares = piece.getCoords();
   int player = piece.getPlayer();
