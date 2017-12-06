@@ -48,6 +48,10 @@ Move AI::choose_random_highest_move(Board board,int player){
         if(biggest > resultlist[i].ReturnPiece().size())
             biggest = resultlist[i];
     }
+    for(int i=0;i<length;i++){
+        if(resultlist[i].ReturnPiece().size()!=biggest.ReturnPiece().size())
+		resultlist.erase(resultlist.begin() + i);
+    }
     Piece result = biggest.ReturnPiece();
     int type = result.getType();
     for(int i=0;i<arsenal.size(); i++){
