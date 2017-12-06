@@ -10,57 +10,31 @@ AI::AI(int player) {
 
 Move AI::choose_random_highest_move(Board board,int player){
   vector<Move> resultlist;
-  vector<Move> resultlist1;
-  vector<Move> resultlist2;
-  vector<Move> resultlist3;
-  vector<Move> resultlist4;
-  vector<Move> resultlist5;
+  resultlist.clear();
   vector<Piece> currpiece;
   Move move = Move();
-  int priority;
-  for(int i=0; i<arsenal.size(); i++){
+  int s = arsenal.size();
+  for(int i=0; i<s; i++){
     currpiece = arsenal[i];
-    priority = currpiece[0].size();
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
 	for(int possmove=0; possmove<currpiece.size();possmove++){
-	  if(board.isLegalMove(currpiece[possmove],x,y) && priority==1){
-	    move = Move(currpiece[possmove],x,y,priority);
-	    resultlist1.push_back(move);
-	  }
-	  else if(board.isLegalMove(currpiece[possmove],x,y) && priority==2){
-	    move = Move(currpiece[possmove],x,y,priority);
-	    resultlist2.push_back(move);
-	  }
-	  else if(board.isLegalMove(currpiece[possmove],x,y) && priority==3){
-	    move = Move(currpiece[possmove],x,y,priority);
-	    resultlist3.push_back(move);
-	  }
-	  else if(board.isLegalMove(currpiece[possmove],x,y) && priority==4){
-	    move = Move(currpiece[possmove],x,y,priority);
-	    resultlist4.push_back(move);
-	  }
-	  else if(board.isLegalMove(currpiece[possmove],x,y) && priority==5){
-	    move = Move(currpiece[possmove],x,y,priority);
-	    resultlist5.push_back(move);
+	  if(board.isLegalMove(currpiece[possmove],x,y)){
+	    move = Move(currpiece[possmove],x,y);
+	    resultlist.push_back(move);
 	  }
 	}	
       }
     }
   }
-  if(resultlist5.size()>0)
-    resultlist = resultlist5;
-  else if(resultlist4.size()>0)
-    resultlist = resultlist4;
-  else if(resultlist3.size()>0)
-    resultlist = resultlist3;
-  else if(resultlist2.size()>0)
-    resultlist = resultlist2;
-  else
-    resultlist = resultlist1;
-	  
 
-  int length = resultlist.size(); 
+  
+  int length = resultlist.size();
+
+  //for(int i=0;i < length;i++){
+  //resultlist[i].ReturnPiece().print();
+  //cout << endl;
+  //}
   cout << player << " : " << length << endl;
     if(length==0){
         done = true; //no moves left
@@ -69,15 +43,19 @@ Move AI::choose_random_highest_move(Board board,int player){
     if(arsenal.size() == 0){
         done = true;
     }
-    int u = rand() % length;
-    Piece result = resultlist[u].ReturnPiece();
+    Move biggest = resultlist[0];
+    for(int i = 1; i < length; i++) {
+        if(biggest > resultlist[i].ReturnPiece().size())
+            biggest = resultlist[i];
+    }
+    Piece result = biggest.ReturnPiece();
     int type = result.getType();
     for(int i=0;i<arsenal.size(); i++){
         if(arsenal[i][1].getType() == type){
             arsenal.erase(arsenal.begin()+i); // removes the chosen piece from arsenal
         }
     }
-    return resultlist[u];
+    return biggest;
 }
 
 Move AI::choose_random_move_from_vector(Board board, int player){
@@ -129,6 +107,10 @@ Move AI::choose_random_move_from_vector(Board board, int player){
         }
     }
     return resultlist[u];
+}
+
+Move AI::aim_for_center(Board board, int player) {
+    
 }
 
 bool AI::isDuplicateMove(vector<Move> previousmoves, Move currmove){
