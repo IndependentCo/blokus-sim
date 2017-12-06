@@ -4,12 +4,21 @@ Move::Move(){
   piece = Piece();
   x = -1;
   y = -1;
+  priority = 0;
 }
 
 Move::Move(Piece piece1, int x1, int y1){
   piece = piece1;
   x = x1;
   y = y1;
+  priority = 0;
+}
+
+Move::Move(Piece piece1, int x1, int y1, int priority1){
+ piece = piece1;
+ x = x1;
+ y = y1;
+ priority = priority;
 }
 
 Piece Move::ReturnPiece(){

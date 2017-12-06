@@ -5,6 +5,7 @@ class Move
 public:
   Move();
   Move(Piece piece, int x, int y);
+  Move(Piece piece, int x, int y, int priority1);
   Piece ReturnPiece();
   int ReturnX();
   int ReturnY();
@@ -14,6 +15,7 @@ protected:
   Piece piece;
   int x;
   int y;
+  int priority;
 };
 
   

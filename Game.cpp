@@ -48,12 +48,46 @@ void Game::play(int strategy, int iterations) {
         output.close();
         break;
     case 2:
-        break;
+      for(int j=0;j<iterations;j++){
+	while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
+	  if(!player1.isDone()){
+	    currmove = player1.choose_random_highest_move(board, 1);
+	    board.placePiece(currmove.ReturnPiece(),
+			     currmove.ReturnX(),
+			     currmove.ReturnY());
+	  }
+	  if(!player2.isDone()){
+	    currmove = player2.choose_random_highest_move(board, 2);
+	    board.placePiece(currmove.ReturnPiece(),
+			     currmove.ReturnX(),
+			     currmove.ReturnY());
+	  }
+	  if(!player3.isDone()){
+	    currmove = player3.choose_random_highest_move(board, 3);
+	    board.placePiece(currmove.ReturnPiece(),
+			     currmove.ReturnX(),
+			     currmove.ReturnY());
+	  }
+	  if(!player4.isDone()){
+	    currmove = player4.choose_random_highest_move(board, 4);
+	    board.placePiece(currmove.ReturnPiece(),
+			     currmove.ReturnX(),
+			     currmove.ReturnY());
+	  }
+	  board.print();
+	  cout << endl;
+	}
+	  
+	board.print();
+	reset();
+      }
+      output.close();
+      break;
     }
 }
 
 void Game::reset() {
-    board.clearBoard();
+  board.clearBoard();
     player1.reset(1);
     player2.reset(2);
     player3.reset(3);

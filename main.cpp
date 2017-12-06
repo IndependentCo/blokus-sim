@@ -20,6 +20,6 @@ using namespace std;
 int main() {
   srand(time(NULL));
   Game newgame;
-  newgame.play(1, 1);
+  newgame.play(2, 1);
   return 0;
 }
