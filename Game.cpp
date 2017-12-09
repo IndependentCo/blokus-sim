@@ -6,13 +6,17 @@ Game::Game() {
     board = Board();
 }
 
-void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4, int iterations, string outputfilename, string possiblemovesfilename) {Move currmove;
+void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4, int iterations, string outputfilename, string possmovesfilename) {
+  Move currmove;
   output.open(outputfilename);
   //new output file to hold the number of possible moves each player has
   //throughout the game
   possmoves.open(possmovesfilename); 
   for(int i=0;i<iterations;i++){
     reset();
+    cout << endl;
+    board.print();
+    cout << endl;
 
       while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
 	if(!player1.isDone() && strategy1==1){
@@ -21,7 +25,7 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 			   currmove.ReturnX(),
 			   currmove.ReturnY());
 	}
-	if(!player1.isDone() && strategy1==2){
+	else if(!player1.isDone() && strategy1==2){
 	  currmove = player1.choose_random_highest_move(board, 1, possmoves);
 	  board.placePiece(currmove.ReturnPiece(),
 			   currmove.ReturnX(),
@@ -33,7 +37,7 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 			   currmove.ReturnX(),
 			   currmove.ReturnY());
 	}
-	if(!player2.isDone() && strategy2==2){
+	else if(!player2.isDone() && strategy2==2){
 	  currmove = player2.choose_random_highest_move(board, 2, possmoves);
 	  board.placePiece(currmove.ReturnPiece(),
 			   currmove.ReturnX(),
@@ -46,7 +50,7 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 			   currmove.ReturnY());
 	}
 	
-	if(!player3.isDone() && strategy3==2){
+	else if(!player3.isDone() && strategy3==2){
 	  currmove = player3.choose_random_highest_move(board, 3, possmoves);
 	  board.placePiece(currmove.ReturnPiece(),
 			   currmove.ReturnX(),
@@ -58,7 +62,7 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 			   currmove.ReturnX(),
 			   currmove.ReturnY());
 	}
-	if(!player4.isDone() && strategy4==2){
+	else if(!player4.isDone() && strategy4==2){
 	  currmove = player4.choose_random_highest_move(board, 4, possmoves);
 	  board.placePiece(currmove.ReturnPiece(),
 			   currmove.ReturnX(),
@@ -69,6 +73,7 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
       board.print();
       board.printToText(output);
       possmoves << endl;
+      reset();
   }
   output.close();
   possmoves.close();
@@ -145,7 +150,6 @@ void Game::play(int strategy, int iterations, string outputfilename, string poss
       }	  
       break;
     }
-    board.printToText(output);
     possmoves << endl;
   }
   output.close();

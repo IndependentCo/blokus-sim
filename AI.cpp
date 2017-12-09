@@ -15,6 +15,7 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
   currpiece.clear();
   Move move = Move();
   int s = arsenal.size();
+  cout << player << " : " << s << endl;;
   //create the vector of all possible unique moves
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
@@ -30,20 +31,19 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
     }
   }
   int length = resultlist.size();
-   record << player << ":" << length << ",";
-     cout << player << " : " << length << endl;
+  cout << player << " : " << length << endl;
   if(length==0){
     done = true; //no moves left
     return Move(); //returns a blank move to avoid error
   }
 
   Move biggest = resultlist[0];
-  //make the list consist of only the moves with highest pieces
+  //find the biggest piece
   for(int i = 1; i < length; i++) {
     if(biggest.ReturnPiece().size() < resultlist[i].ReturnPiece().size())
       biggest = resultlist[i];
   }
-  //make the list consist of only the biggest moves
+  //make the list consist of only the biggest pieces
   for(int i=0;i<length;i++){
     if(resultlist[i].ReturnPiece().size()<biggest.ReturnPiece().size()){
       resultlist.erase(resultlist.begin() + i);
@@ -86,6 +86,7 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
   vector<Piece> currpiece;
   Move move = Move();
   int s = arsenal.size();
+    cout << player << " : " << s << endl;
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
     for(int x=0; x<20; x++){
@@ -107,6 +108,7 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
   int length = resultlist.size();
   record << player << ":" << length << ",";
   cout << player << " : " << length << endl;
+
     if(length==0){
         done = true; //no moves left
         return Move(); //returns a blank move to avoid error
@@ -120,7 +122,7 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
         }
 	
     }
-    cout << player << " size: " << arsenal.size()<< endl;
+    //cout << player << " size: " << arsenal.size()<< endl;
     if(arsenal.size() == 0){
         done = true;
     }
@@ -146,7 +148,6 @@ int AI::returnArsenalSize(){
 }
 
 void AI::reset(int player){
-  Piece piece;
   arsenal.clear();
   initializeArsenal(player);
   done = false;
