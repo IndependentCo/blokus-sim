@@ -9,8 +9,8 @@ public:
   void place_randomly(Board board, int player);
   void place_biggest(Board board, int player);
   void aim_for_center(Board board, int player);
-  Move choose_random_highest_move(Board board, int player);
-  Move choose_random_move_from_vector(Board board, int player);
+  Move choose_random_highest_move(Board board, int player, ofstream &record);
+  Move choose_random_move_from_vector(Board board, int player, ofstream &record);
   bool isDone();
   int returnArsenalSize();
   bool isDuplicateMove(vector<Move> previousmoves, Move currmove);

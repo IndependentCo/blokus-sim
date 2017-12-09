@@ -20,6 +20,6 @@ using namespace std;
 int main() {
   srand(time(NULL));
   Game newgame;
-  newgame.play(2,100,"BigFirst1", "BigFirst1PossMoves");
+  newgame.play(2, 3,"BigFirst");
   return 0;
 }
