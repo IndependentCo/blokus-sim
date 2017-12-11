@@ -27,6 +27,8 @@ int Board::placePiece(Piece piece, int x, int y){
   vector<vector<int> > squares = piece.getCoords();
   int player = piece.getPlayer();
   vector<int> currsquare;
+  if(piece.getType() == -1)
+    return 0;
   for(size_t i=0;i<squares.size();i++){
     currsquare = squares[i];
     if((x+currsquare[0]) >=20 || (y+currsquare[1]) >=20)
@@ -80,10 +82,10 @@ bool Board::isDiagonal(int x,int y, int player){
     return true;
   else if(x==0 && y==19 && player==2)
     return true;
-  else if(x==19 && y==0 && player==4)
-    return true;   
   else if(x==19 && y==19 && player==3)
     return true;
+  else if(x==19 && y==0 && player==4)
+    return true;   
   else if(onBoard(x-1,y-1) && boardmatrix[x-1][y-1]==player)//diagonal conditions
     return true;
   else if(onBoard(x-1,y+1) && boardmatrix[x-1][y+1]==player)

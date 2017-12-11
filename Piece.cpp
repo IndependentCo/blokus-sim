@@ -20,7 +20,7 @@ Piece::Piece() {
     player = 1;
     height = 0;
     width = 0;
-    coords[0][0] = 0;
+    coords[0][0] = 1;
     piecetype = -1;
 } //constructor
 

@@ -2,8 +2,8 @@
 
 Move::Move(){
   piece = Piece();
-  x = -1;
-  y = -1;
+  x = 0;
+  y = 0;
   priority = 0;
 }
 

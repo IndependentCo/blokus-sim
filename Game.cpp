@@ -14,9 +14,6 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
   possmoves.open(possmovesfilename); 
   for(int i=0;i<iterations;i++){
     reset();
-    cout << endl;
-    board.print();
-    cout << endl;
 
       while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
 	if(!player1.isDone() && strategy1==1){
@@ -87,9 +84,11 @@ void Game::play(int strategy, int iterations, string outputfilename, string poss
   //throughout the game
   possmoves.open(possmovesfilename); 
   for(int i=0;i<iterations;i++){
+    currmove = Move();
     reset();
     switch(strategy) {
     case 1:
+          reset();
       while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
 	if(!player1.isDone()){
 	  currmove = player1.choose_random_move_from_vector(board, 1,possmoves);
@@ -120,8 +119,9 @@ void Game::play(int strategy, int iterations, string outputfilename, string poss
       board.print();       
       break;
     case 2:
+      reset();
       while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
-	board.print();
+
 	if(!player1.isDone()){
 	  currmove = player1.choose_random_highest_move(board, 1, possmoves);
 	  board.placePiece(currmove.ReturnPiece(),

@@ -15,22 +15,30 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
   currpiece.clear();
   Move move = Move();
   int s = arsenal.size();
-  cout << player << " : " << s << endl;;
+  cout << player << " : " << s << endl;
   //create the vector of all possible unique moves
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
+    s = currpiece.size();
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
-	for(int possmove=0; possmove<currpiece.size();possmove++){
+	for(int possmove=0; possmove<s;possmove++){
 	  if(board.isLegalMove(currpiece[possmove],x,y)){
 	    move = Move(currpiece[possmove],x,y);
 	    resultlist.push_back(move);
 	  }
+	  
 	}	
       }
     }
   }
   int length = resultlist.size();
+  if(arsenal.size()==21 && player==4 && length!=58){
+  for(int i=0;i < length;i++){
+     resultlist[i].ReturnPiece().print();
+     cout << endl;
+  }
+  }
   cout << player << " : " << length << endl;
   if(length==0){
     done = true; //no moves left
@@ -40,7 +48,7 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
   Move biggest = resultlist[0];
   //find the biggest piece
   for(int i = 1; i < length; i++) {
-    if(biggest.ReturnPiece().size() < resultlist[i].ReturnPiece().size())
+    if(biggest.ReturnPiece().size() > resultlist[i].ReturnPiece().size())
       biggest = resultlist[i];
   }
   //make the list consist of only the biggest pieces
@@ -53,13 +61,6 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
   }
   
   length = resultlist.size();
-  //if(player==4){
-  //for(int i=0;i < length;i++){
-  //resultlist[i].ReturnPiece().print();
-  //cout << endl;
-  //}
-  //}
-  //cout << player << " : " << length << endl;
     int u = rand() % length;
     Piece result = resultlist[u].ReturnPiece();
     int type = result.getType();
@@ -100,12 +101,14 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
       }
     }
   }
-
-  //for(int i=0;i < length;i++){
-  //resultlist[i].ReturnPiece().print();
-  //cout << endl;
-  //}
   int length = resultlist.size();
+  if(s==21 && player==4){
+  for(int i=0;i < length;i++){
+     resultlist[i].ReturnPiece().print();
+     cout << endl;
+  }
+  }
+
   record << player << ":" << length << ",";
   cout << player << " : " << length << endl;
 
@@ -148,7 +151,6 @@ int AI::returnArsenalSize(){
 }
 
 void AI::reset(int player){
-  arsenal.clear();
   initializeArsenal(player);
   done = false;
 }
@@ -163,6 +165,7 @@ bool AI::isUnique(vector<Piece> prevpieces, Piece currpiece){
 }
 
 void AI::initializeArsenal(int player){
+  arsenal.clear();
   Piece piece;
   vector<Piece> currpieces;
   for(int i=0; i<21;i++){
@@ -170,12 +173,15 @@ void AI::initializeArsenal(int player){
     for(int reflect=0; reflect<2; reflect++){
       for(int rotate=0; rotate<4; rotate++){
 	if(isUnique(currpieces,piece)){
+	  if(player==4){ piece.print();
+	    cout << endl;}
 	  currpieces.push_back(piece);
 	}
 	piece.rotate(90);
       }
       piece.reflect(false);
     }
+    
     arsenal.push_back(currpieces);
     currpieces.clear();
   }
