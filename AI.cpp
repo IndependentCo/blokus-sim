@@ -91,6 +91,7 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
   cout << player << " : " << s << endl;
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
+    currsize = currpiece.size();
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
 	for(int possmove=0; possmove<currsize;possmove++){
@@ -103,7 +104,7 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
     }
   }
   int length = resultlist.size();
-  if(s==21 && player==4){
+  if(s==21 && player==4 && length!=58){
   for(int i=0;i < length;i++){
      resultlist[i].ReturnPiece().print();
      cout << endl;
