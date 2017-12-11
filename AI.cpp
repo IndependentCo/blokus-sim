@@ -15,29 +15,29 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
   currpiece.clear();
   Move move = Move();
   int s = arsenal.size();
+  int currsize;
   cout << player << " : " << s << endl;
   //create the vector of all possible unique moves
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
-    s = currpiece.size();
+    currsize = currpiece.size();
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
-	for(int possmove=0; possmove<s;possmove++){
+	for(int possmove=0; possmove<currsize;possmove++){
 	  if(board.isLegalMove(currpiece[possmove],x,y)){
 	    move = Move(currpiece[possmove],x,y);
 	    resultlist.push_back(move);
-	  }
-	  
+	  } 
 	}	
       }
     }
   }
   int length = resultlist.size();
   if(arsenal.size()==21 && player==4 && length!=58){
-  for(int i=0;i < length;i++){
-     resultlist[i].ReturnPiece().print();
-     cout << endl;
-  }
+    for(int i=0;i < length;i++){
+      resultlist[i].ReturnPiece().print();
+      cout << endl;
+    }
   }
   cout << player << " : " << length << endl;
   if(length==0){
@@ -87,12 +87,13 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
   vector<Piece> currpiece;
   Move move = Move();
   int s = arsenal.size();
-    cout << player << " : " << s << endl;
+  int currsize;
+  cout << player << " : " << s << endl;
   for(int i=0; i<s; i++){
     currpiece = arsenal[i];
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
-	for(int possmove=0; possmove<currpiece.size();possmove++){
+	for(int possmove=0; possmove<currsize;possmove++){
 	  if(board.isLegalMove(currpiece[possmove],x,y)){
 	    move = Move(currpiece[possmove],x,y);
 	    resultlist.push_back(move);
@@ -173,8 +174,6 @@ void AI::initializeArsenal(int player){
     for(int reflect=0; reflect<2; reflect++){
       for(int rotate=0; rotate<4; rotate++){
 	if(isUnique(currpieces,piece)){
-	  if(player==4){ piece.print();
-	    cout << endl;}
 	  currpieces.push_back(piece);
 	}
 	piece.rotate(90);
