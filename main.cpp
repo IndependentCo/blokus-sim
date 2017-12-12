@@ -6,20 +6,17 @@
 //  Copyright © 2017 Alex Frasca. All rights reserved.
 //
 
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
-#include <vector>
-using namespace std;
-#include "Piece.cpp"
-#include "Move.cpp"
-#include "Board.cpp"
-#include "AI.cpp"
-#include "Game.cpp"
 
+#include "Piece.hpp"
+#include "Move.hpp"
+#include "Board.hpp"
+#include "AI.hpp"
+#include "Game.hpp"
+using namespace std;
 int main() {
   srand(time(NULL));
   Game newgame = Game();
+  newgame.reset();
   //newgame.playcustom(1,1,1,1,500,"1111.txt", "1111_PossMoves.txt");
   //newgame.playcustom(2,1,1,1,500,"2111.txt", "2111_PossMoves.txt");
   //newgame.playcustom(3,1,1,1,500,"3111.txt", "3111_PossMoves.txt");

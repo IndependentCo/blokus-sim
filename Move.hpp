@@ -2,6 +2,12 @@
 #ifndef Move_
 #define Move_
 
+#include "Piece.hpp"
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <vector>
+using namespace std;
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 class Move

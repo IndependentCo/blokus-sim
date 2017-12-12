@@ -1,7 +1,11 @@
 // AI.cpp
 
 #include "AI.hpp"
-#include <vector>
+
+AI::AI() {
+    arsenal.clear();
+    done = false;
+}
 
 AI::AI(int player) {
     initializeArsenal(player);
@@ -10,10 +14,8 @@ AI::AI(int player) {
 
 Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
     vector<Move> resultlist;
-    resultlist.clear();
     vector<Piece> currpiece;
-    currpiece.clear();
-    Move move = Move();
+    Move move;
     int s = arsenal.size();
     int currsize;
     cout << player << " : " << s << endl;
@@ -77,20 +79,20 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
 }
 
 Move AI::choose_random_move_from_vector(Board board, int player, ofstream &record){
-    //needs to comile a vector list of coordinates where moves are possible.
-    //all possible moves should be included in the list.
-    //list will be <x,y,piece>
-    //Once the list is completed, uniformly choose a random move from the list.
-    //return resulting <x,y,piece>
     vector<Move> resultlist;
-    resultlist.clear();
     vector<Piece> currpiece;
-    currpiece.clear();
-    Move move = Move();
+    Move move;
+    int s = arsenal.size();
     int currsize;
-    for(size_t i=0; i<arsenal.size(); i++){
+    cout << player << " : " << s << endl;
+    //create the vector of all possible unique moves
+    for(int i=0; i<s; i++){
         currpiece = arsenal[i];
         currsize = currpiece.size();
+        if(s==21 && player==1){
+            cout << endl;
+            cout << currsize << endl;
+        }
         for(int x=0; x<20; x++){
             for(int y=0; y<20; y++){
                 for(int possmove=0; possmove<currsize;possmove++){
@@ -98,28 +100,32 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
                         move = Move(currpiece[possmove],x,y);
                         resultlist.push_back(move);
                     }
+                        if(s==21 && player==1){
+                        cout << x << "," << y << endl;
+                        cout << possmove <<endl;
+                        }
                 }	
             }
         }
+       
     }
-    
+    int length = resultlist.size();
     cout << player << " : " << arsenal.size() << endl;
-    int length1 = resultlist.size();
-    if(arsenal.size()==21 && length1!=58){
-        for(int i=0;i < length1;i++){
+    if(arsenal.size()==21 && length!=58){
+        for(int i=0;i < length;i++){
             resultlist[i].ReturnPiece().print();
             cout << endl;
         }
     }
 
-    record << player << ":" << length1 << ",";
-    cout << player << " : " << length1 << endl;
+    record << player << ":" << length << ",";
+    cout << player << " : " << length << endl;
 
-    if(length1==0){
+    if(length==0){
         done = true; //no moves left
         return Move(); //returns a blank move to avoid error
     }
-    int u = rand() % length1;
+    int u = rand() % length;
     Piece result = resultlist[u].ReturnPiece();
     int type = result.getType();
     for(size_t i=0;i<arsenal.size(); i++){
@@ -241,6 +247,7 @@ int AI::returnArsenalSize(){
 }
 
 void AI::reset(int player){
+    arsenal.clear();
     initializeArsenal(player);
     done = false;
 }

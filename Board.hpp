@@ -1,6 +1,8 @@
 #ifndef Board_
 #define Board_
 
+using namespace std;
+#include "Piece.hpp"
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 class Board

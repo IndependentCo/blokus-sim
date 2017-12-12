@@ -2,6 +2,13 @@
 #ifndef Game_
 #define Game_
 
+#include "Board.hpp"
+#include "AI.hpp"
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <vector>
+using namespace std;
 /* The classes below are exported */
 #pragma GCC visibility push(default)
 class Game
