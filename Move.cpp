@@ -18,7 +18,7 @@ Move::Move(Piece piece1, int x1, int y1, int priority1){
  piece = piece1;
  x = x1;
  y = y1;
- priority = priority;
+ priority = priority1;
 }
 
 Piece Move::ReturnPiece(){
