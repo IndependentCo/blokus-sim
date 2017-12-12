@@ -1,5 +1,9 @@
 //Move.hpp
-#include "Piece.hpp"
+#ifndef Move_
+#define Move_
+
+/* The classes below are exported */
+#pragma GCC visibility push(default)
 class Move
 {
 public:
@@ -17,5 +21,9 @@ protected:
   int x;
   int y;
 };
+
+
+#pragma GCC visibility pop
+#endif
 
   

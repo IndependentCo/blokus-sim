@@ -8,7 +8,6 @@
 
 #ifndef Piece_
 #define Piece_
-#include <vector>
 
 /* The classes below are exported */
 #pragma GCC visibility push(default)

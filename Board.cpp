@@ -1,24 +1,22 @@
 //Board.cpp
 
-#include <iostream>
-#include <fstream>
-#include <vector>
 #include "Board.hpp"
 
 using namespace std;
 
 Board::Board(){
-  for(int i=0;i<20;i++){
-    for(int j=0;j<20;j++){
-      boardmatrix[i][j] = 0;
+  for(int xi=0;xi<20;xi++){
+    for(int xj=0;xj<20;xj++){
+      boardmatrix[xi][xj] = 0;
     }
   }
 }
 
 void Board::clearBoard(){
-  for(int i=0;i<20;i++){
-    for(int j=0;j<20;j++){
-      boardmatrix[i][j] = 0;
+
+  for(int xi=0;xi<20;xi++){
+    for(int xj=0;xj<20;xj++){
+      boardmatrix[xi][xj] = 0;
     }
   }
 }

@@ -1,5 +1,9 @@
 // Game Class
+#ifndef Game_
+#define Game_
 
+/* The classes below are exported */
+#pragma GCC visibility push(default)
 class Game
 {
 public:
@@ -9,11 +13,13 @@ public:
   void reset();
 private:
   Board board;
-  AI player1 = AI(1);
-  AI player2 = AI(2);
-  AI player3 = AI(3);
-  AI player4 = AI(4);
+  AI player1;
+  AI player2;
+  AI player3;
+  AI player4;
   ofstream output;
   ofstream possmoves;
 };
     
+#pragma GCC visibility pop
+#endif

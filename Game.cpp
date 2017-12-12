@@ -4,6 +4,10 @@
 
 Game::Game() {
     board = Board();
+    player1 = AI(1);
+    player2 = AI(2);
+    player3 = AI(3);
+    player4 = AI(4);
 }
 
 void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4, int iterations, string outputfilename, string possmovesfilename) {
@@ -14,7 +18,6 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
     possmoves.open(possmovesfilename); 
     for(int i=0;i<iterations;i++){
         reset();
-
         while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
             if(!player1.isDone() && strategy1==1){
                 currmove = player1.choose_random_move_from_vector(board, 1,possmoves);
@@ -89,12 +92,11 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
                                  currmove.ReturnX(),
                                  currmove.ReturnY());
             }
+            board.print();
             cout << endl;
         }
-        board.print();
         board.printToText(output);
         possmoves << endl;
-        reset();
     }
     output.close();
     possmoves.close();
@@ -107,11 +109,10 @@ void Game::play(int strategy, int iterations, string outputfilename, string poss
     //throughout the game
     possmoves.open(possmovesfilename); 
     for(int i=0;i<iterations;i++){
-        currmove = Move();
         reset();
+        currmove = Move();
         switch(strategy) {
         case 1:
-            reset();
             while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
                 if(!player1.isDone()){
                     currmove = player1.choose_random_move_from_vector(board, 1,possmoves);
@@ -142,7 +143,6 @@ void Game::play(int strategy, int iterations, string outputfilename, string poss
             board.print();       
             break;
         case 2:
-            reset();
             while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
 
                 if(!player1.isDone()){
@@ -174,7 +174,6 @@ void Game::play(int strategy, int iterations, string outputfilename, string poss
             board.print();
             break;
         case 3:
-            reset();
             while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
 
                 if(!player1.isDone()){

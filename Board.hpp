@@ -1,7 +1,8 @@
-#include <vector>
-#include "Piece.hpp"
-const int width = 20;
-const int height = 20;
+#ifndef Board_
+#define Board_
+
+/* The classes below are exported */
+#pragma GCC visibility push(default)
 class Board
 {
 public:
@@ -16,5 +17,9 @@ public:
   bool onBoard(int x, int y);
     void printToText(std::ofstream &output);
 protected:
-  int boardmatrix[width][height];
+  int boardmatrix[20][20];
 };
+
+
+#pragma GCC visibility pop
+#endif
