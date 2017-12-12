@@ -14,7 +14,7 @@ public:
   void print();
   bool isDiagonal(int x, int y, int player);
   bool onBoard(int x, int y);
-  void printToText(ofstream &output);
+    void printToText(std::ofstream &output);
 protected:
   int boardmatrix[width][height];
 };

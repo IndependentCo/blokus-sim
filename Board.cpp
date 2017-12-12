@@ -51,8 +51,7 @@ bool Board::isLegalMove(Piece piece, int x, int y) {
   bool diagonal = false;
   int player = piece.getPlayer();
   vector<vector<int> > squares = piece.getCoords();
-  int s = squares.size();
-  for(int i = 0; i < s; i++) {
+  for(size_t i = 0; i < squares.size(); i++) {
     vector<int> currsquare = squares[i];
     int currx = x + currsquare[0];
     int curry = y + currsquare[1];

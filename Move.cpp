@@ -31,6 +31,7 @@ int Move::ReturnX(){
 int Move::ReturnY(){
   return(y);
 }
+
 std::vector<int> Move::ReturnXY(){
   std::vector<int> xy;
   xy.push_back(x);

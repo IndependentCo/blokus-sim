@@ -11,11 +11,11 @@ public:
   int ReturnY();
   std::vector<int> ReturnXY();
   bool isEqual(Move move);
+    int priority;
 protected:
   Piece piece;
   int x;
   int y;
-  int priority;
 };
 
   
