@@ -16,7 +16,8 @@ class Game
 public:
   Game();
   void play(int strategy, int iterations, string outputfilename, string possmovesfilename);
-  void playcustom(int strategy1, int strategy2, int strategy3, int strategy4, int iterations, string outputfilename, string possmovesfilename);
+  void playcustom(int strategy1, int strategy2, int strategy3, int strategy4, int iterations, 
+                  string outputfilename, string possmovesfilename);
   void reset();
 private:
   Board board;
