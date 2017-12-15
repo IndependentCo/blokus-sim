@@ -12,8 +12,6 @@ public:
   int placePiece(Piece piece, int x, int y);
   bool isLegalMove(Piece piece, int x, int y);
   void clearBoard();
-  //int getScore(int player);
-  //int getWinner();
   void print();
   bool isDiagonal(int x, int y, int player);
   bool onBoard(int x, int y);
