@@ -18,7 +18,7 @@ Move::Move(Piece piece1, int x1, int y1, int priority1){
  piece = piece1;
  x = x1;
  y = y1;
- priority = priority1;
+ priority = priority;
 }
 
 Piece Move::ReturnPiece(){
@@ -31,7 +31,6 @@ int Move::ReturnX(){
 int Move::ReturnY(){
   return(y);
 }
-
 std::vector<int> Move::ReturnXY(){
   std::vector<int> xy;
   xy.push_back(x);

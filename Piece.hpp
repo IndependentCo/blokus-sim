@@ -8,14 +8,13 @@
 
 #ifndef Piece_
 #define Piece_
-
-#include <iostream>
-#include <fstream>
-#include <cstdlib>
 #include <vector>
-using namespace std;
+
 /* The classes below are exported */
 #pragma GCC visibility push(default)
+
+const int maxwidth = 5;
+const int maxheight = 5;
 
 class Piece
 {
@@ -39,7 +38,7 @@ protected:
   int player;
   int height;
   int width;
-  int coords[5][5];
+  int coords[maxwidth][maxheight];
   int piecetype;
 };
 

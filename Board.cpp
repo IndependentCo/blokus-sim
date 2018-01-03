@@ -1,22 +1,24 @@
 //Board.cpp
 
+#include <iostream>
+#include <fstream>
+#include <vector>
 #include "Board.hpp"
 
 using namespace std;
 
 Board::Board(){
-  for(int xi=0;xi<20;xi++){
-    for(int xj=0;xj<20;xj++){
-      boardmatrix[xi][xj] = 0;
+  for(int i=0;i<20;i++){
+    for(int j=0;j<20;j++){
+      boardmatrix[i][j] = 0;
     }
   }
 }
 
 void Board::clearBoard(){
-
-  for(int xi=0;xi<20;xi++){
-    for(int xj=0;xj<20;xj++){
-      boardmatrix[xi][xj] = 0;
+  for(int i=0;i<20;i++){
+    for(int j=0;j<20;j++){
+      boardmatrix[i][j] = 0;
     }
   }
 }
@@ -49,7 +51,8 @@ bool Board::isLegalMove(Piece piece, int x, int y) {
   bool diagonal = false;
   int player = piece.getPlayer();
   vector<vector<int> > squares = piece.getCoords();
-  for(size_t i = 0; i < squares.size(); i++) {
+  int s = squares.size();
+  for(int i = 0; i < s; i++) {
     vector<int> currsquare = squares[i];
     int currx = x + currsquare[0];
     int curry = y + currsquare[1];
