@@ -52,7 +52,7 @@ bool Board::isLegalMove(Piece piece, int x, int y) {
   int player = piece.getPlayer();
   vector<vector<int> > squares = piece.getCoords();
   int s = squares.size();
-  for(int i = 0; i < s; i++) {
+  for(int i = 0; i < s; i++) {		//for each square of the piece
     vector<int> currsquare = squares[i];
     int currx = x + currsquare[0];
     int curry = y + currsquare[1];
@@ -65,10 +65,8 @@ bool Board::isLegalMove(Piece piece, int x, int y) {
     if(boardmatrix[currx][curry]!=0)
       return false;
     // check adjacent
-    if(boardmatrix[currx - 1][curry] == player || boardmatrix[currx + 1][curry] == player || 
-       boardmatrix[currx][curry - 1] == player || boardmatrix[currx][curry + 1] == player) {
-      return false;
-    }
+	if (isAdjacent(currx, curry, player))
+		return false;
     //check diagonal
     if(isDiagonal(currx, curry, player))
       diagonal = true;
@@ -76,31 +74,62 @@ bool Board::isLegalMove(Piece piece, int x, int y) {
   return diagonal;
 }
 
+bool Board::isAdjacent(int x, int y, int player) {
+	bool flag = false;
+	if (onBoard(x - 1, y)) {
+		if (boardmatrix[x - 1][y] == player)
+			flag = true;
+	}
+	if (onBoard(x + 1, y)) {
+		if (boardmatrix[x + 1][y] == player)
+			flag = true;
+	}
+	if (onBoard(x, y - 1)) {
+		if (boardmatrix[x][y - 1] == player)
+			flag = true;
+	}
+	if (onBoard(x, y + 1)) {
+		if (boardmatrix[x][y + 1] == player)
+			flag = true;
+	}
+	return flag;
+}
+
 
 bool Board::isDiagonal(int x,int y, int player){
+	bool flag = false;
   if(x==0 && y==0 && player==1)//corner conditionals
-    return true;
+    flag = true;
   else if(x==0 && y==19 && player==2)
-    return true;
+    flag = true;
   else if(x==19 && y==19 && player==3)
-    return true;
+    flag = true;
   else if(x==19 && y==0 && player==4)
-    return true;   
-  else if(onBoard(x-1,y-1) && boardmatrix[x-1][y-1]==player)//diagonal conditions
-    return true;
-  else if(onBoard(x-1,y+1) && boardmatrix[x-1][y+1]==player)
-    return true;
-  else if(onBoard(x+1,y-1) && boardmatrix[x+1][y-1]==player)
-    return true;
-  else if(onBoard(x+1,y+1) && boardmatrix[x+1][y+1]==player)
-    return true;
-  else
-    return false;	
+    flag = true;   
+  else {
+	  if(onBoard(x-1,y-1)){
+		  if (boardmatrix[x - 1][y - 1] == player)
+			  flag = true;
+	  }
+	  if (onBoard(x + 1, y - 1)) {
+		  if (boardmatrix[x + 1][y - 1] == player)
+			  flag = true;
+	  }
+	  if (onBoard(x - 1, y + 1)) {
+		  if (boardmatrix[x - 1][y + 1] == player)
+			  flag = true;
+	  }
+	  if (onBoard(x + 1, y + 1)) {
+		  if (boardmatrix[x + 1][y + 1] == player)
+			  flag = true;
+	  }
+  }
+  return flag;
 }
     
 
 bool Board::onBoard(int x, int y){
-  if(x<0 || x>=20 || y<0 || y>=20)
+  if(x<0 || x>19 || y<0 || y>19)
     return false;
   return true;
 }

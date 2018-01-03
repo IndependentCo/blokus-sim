@@ -1,4 +1,6 @@
 //Move.hpp
+#ifndef Move_
+#define Move_
 #include "Piece.hpp"
 class Move
 {
@@ -17,5 +19,6 @@ protected:
   int y;
   int priority;
 };
+#endif
 
   

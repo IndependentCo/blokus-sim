@@ -1,4 +1,8 @@
 // Game Class
+#ifndef Game_
+#define Game_
+#include "AI.hpp"
+#include "Board.hpp"
 
 class Game
 {
@@ -16,4 +20,5 @@ private:
   ofstream output;
   ofstream possmoves;
 };
+#endif
     

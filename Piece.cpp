@@ -267,7 +267,7 @@ void Piece::rotate_180() {
      Pre: Piece has been initialized with a piece type
      Post: Piece is rotated 180 degrees
      *************************************************************************************************/
-    int temp_coords[height][width];
+    int temp_coords[maxheight][maxwidth];
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
             temp_coords[height - 1 - i][width - 1 - j] = coords[i][j];
@@ -319,7 +319,7 @@ void Piece::rotate(int degrees) {
         height = temp_width;
         
         //move squares
-        int new_coords[height][width];
+        int new_coords[maxheight][maxwidth];
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 new_coords[i][j] = coords[width-j-1][i];
@@ -341,7 +341,7 @@ void Piece::reflect(bool horiz) {
      Pre: Piece has been initialized with a piece type
      Post: Piece is reflected over either the horizontal or vertical axis, determined by horiz
      *************************************************************************************************/
-    int new_coords[height][width];
+    int new_coords[maxheight][maxwidth];
     for(int i = 0; i < height; i++) {
         for(int j = 0; j < width; j++) {
             new_coords[i][j] = coords[i][width-j-1];

@@ -1,7 +1,13 @@
 // AI.hpp
+#ifndef AI_
+#define AI_
 
+#include "Board.hpp"
+#include <vector>
+#include "Move.hpp"
+#include <fstream>
+#include <iostream>
 using namespace std;
-
 class AI
 {
 public:
@@ -23,3 +29,4 @@ protected:
   std::vector<std::vector<Piece> >  arsenal;
   bool done;
 };
+#endif

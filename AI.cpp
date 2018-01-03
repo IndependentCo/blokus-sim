@@ -23,12 +23,12 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
     currsize = currpiece.size();
     for(int x=0; x<20; x++){
       for(int y=0; y<20; y++){
-	for(int possmove=0; possmove<currsize;possmove++){
-	  if(board.isLegalMove(currpiece[possmove],x,y)){
-	    move = Move(currpiece[possmove],x,y);
-	    resultlist.push_back(move);
-	  } 
-	}	
+		for(int possmove=0; possmove<currsize;possmove++){
+			if(board.isLegalMove(currpiece[possmove],x,y)){
+				move = Move(currpiece[possmove],x,y);
+				resultlist.push_back(move);
+			} 
+		}	
       }
     }
   }
@@ -39,6 +39,7 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
       cout << endl;
     }
   }
+  record << player << ":" << length << ",";
   cout << player << " : " << length << endl;
   if(length==0){
     done = true; //no moves left
@@ -65,7 +66,7 @@ Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
     Piece result = resultlist[u].ReturnPiece();
     int type = result.getType();
 
-    for(int i=0;i<arsenal.size(); i++){
+    for(size_t i=0;i<arsenal.size(); i++){
         if(arsenal[i][0].getType() == type){
             arsenal.erase(arsenal.begin()+i); // removes the chosen piece from arsenal
         }
@@ -121,7 +122,7 @@ Move AI::choose_random_move_from_vector(Board board, int player, ofstream &recor
     int u = rand() % length;
     Piece result = resultlist[u].ReturnPiece();
     int type = result.getType();
-    for(int i=0;i<arsenal.size(); i++){
+    for(size_t i=0;i<arsenal.size(); i++){
         if(arsenal[i][0].getType() == type){
             arsenal.erase(arsenal.begin()+i); // removes the chosen piece from arsenal
         }
@@ -158,7 +159,7 @@ void AI::reset(int player){
 }
 
 bool AI::isUnique(vector<Piece> prevpieces, Piece currpiece){
-  for(int i=0;i<prevpieces.size();i++){
+  for(size_t i=0;i<prevpieces.size();i++){
     if(currpiece.isEqual(prevpieces[i])){
       return false;
     }
@@ -188,8 +189,8 @@ void AI::initializeArsenal(int player){
 }
 
 void AI::test(){
-  for(int i=0;i<arsenal.size();i++){
-    for(int j=0;j<arsenal[i].size();j++){
+  for(size_t i=0;i<arsenal.size();i++){
+    for(size_t j=0;j<arsenal[i].size();j++){
       arsenal[i][j].print();
     }
     cout << "-------------------" << endl;

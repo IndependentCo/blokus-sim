@@ -9,10 +9,6 @@
 #ifndef Piece_
 #define Piece_
 #include <vector>
-
-/* The classes below are exported */
-#pragma GCC visibility push(default)
-
 const int maxwidth = 5;
 const int maxheight = 5;
 
@@ -41,7 +37,4 @@ protected:
   int coords[maxwidth][maxheight];
   int piecetype;
 };
-
-
-#pragma GCC visibility pop
 #endif
