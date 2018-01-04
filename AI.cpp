@@ -8,6 +8,74 @@ AI::AI(int player) {
   done = false;
 }
 
+Move AI::aim_for_center(Board board, int player, ofstream &record) {
+    vector<Move> resultlist;
+    Move move;
+    int s = arsenal.size();
+    cout << player << " : " << s << endl;
+    //create the vector of all possible unique moves
+    for(int x=0; x<20; x++){
+      for(int y=0; y<20; y++){
+	for(int i=0; i<s;i++){
+	  if(board.isLegalMove(arsenal.getPiece(i),x,y)){
+	    move = Move(arsenal.getPiece(i),x,y);
+	    resultlist.push_back(move);
+	  }
+	}	
+      }
+    } 
+    int length = resultlist.size();
+    
+    record << player << ":" << length << ",";
+    cout << player << " : " << length << endl;
+    if(length==0){
+        done = true; //no moves left
+        return Move(); //returns a blank move to avoid error
+    }
+
+    Move biggest = resultlist[0];
+    //find the biggest piece
+    for(int i = 1; i < length; i++) {
+        if(biggest.ReturnPiece().size() > resultlist[i].ReturnPiece().size())
+            biggest = resultlist[i];
+    }
+    //make the list consist of only the biggest pieces
+    for(int i=0;i<length;i++){
+        if(resultlist[i].ReturnPiece().size()<biggest.ReturnPiece().size()){
+            resultlist.erase(resultlist.begin() + i);
+            i--;
+        }			 
+    }
+    
+  
+    length = resultlist.size();
+    for(int i = 0; i < length; i++) {
+        resultlist[i].priority = (resultlist[i].ReturnX() * resultlist[i].ReturnY());
+    }
+    int my_priority = resultlist[0].priority;
+    //find highest priority
+    for(int i = 1; i < length; i++) {
+        if(resultlist[i].priority > my_priority)
+            my_priority = resultlist[i].priority;
+    }
+    Piece result;
+    int pos;
+    //get move
+    for(int i = 0; i < length; i++) {
+        if(resultlist[i].priority == my_priority) {
+            result = resultlist[i].ReturnPiece();
+            pos = i;
+        }
+    }
+    int type = result.getType();
+    arsenal.removePiece(type);
+
+    if(arsenal.size() == 0){
+        done = true;
+    }
+    return resultlist[pos];
+}
+
 Move AI::choose_random_highest_move(Board board,int player,ofstream &record){
   vector<Move> resultlist;
   resultlist.clear();
