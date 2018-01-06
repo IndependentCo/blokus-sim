@@ -16,18 +16,33 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
     reset();
 
       while(!player1.isDone()||!player2.isDone()||!player3.isDone()||!player4.isDone()){
-	if(!player1.isDone() && strategy1==1){
-	  currmove = player1.choose_random_move_from_vector(board, 1,possmoves);
-	  board.placePiece(currmove.ReturnPiece(),
-			   currmove.ReturnX(),
-			   currmove.ReturnY());
-	}
-	else if(!player1.isDone() && strategy1==2){
-	  currmove = player1.choose_random_highest_move(board, 1, possmoves);
-	  board.placePiece(currmove.ReturnPiece(),
-			   currmove.ReturnX(),
-			   currmove.ReturnY());
-	}
+		  if (!player1.isDone() && strategy1 == 1) {
+			  currmove = player1.choose_random_move_from_vector(board, 1, possmoves);
+			  board.placePiece(currmove.ReturnPiece(),
+				  currmove.ReturnX(),
+				  currmove.ReturnY());
+		  }
+		  else if (!player1.isDone() && strategy1 == 2) {
+			  currmove = player1.choose_random_highest_move(board, 1, possmoves);
+			  board.placePiece(currmove.ReturnPiece(),
+				  currmove.ReturnX(),
+				  currmove.ReturnY());
+		  }
+		  else if (!player1.isDone() && strategy1 == 3) {
+			  currmove = player1.aim_for_center(board, 1, possmoves);
+			  board.placePiece(currmove.ReturnPiece(),
+				  currmove.ReturnX(),
+				  currmove.ReturnY());
+		  }
+		  else if (!player1.isDone() && strategy1 == 4) {
+			  currmove = player1.aim_for_corner(board, 1, possmoves);
+			  board.placePiece(currmove.ReturnPiece(),
+				  currmove.ReturnX(),
+				  currmove.ReturnY());
+		  }
+		  else {
+			  possmoves << "1:0,";
+		  }
 	if(!player2.isDone() && strategy2==1){
 	  currmove = player2.choose_random_move_from_vector(board, 2,possmoves);
 	  board.placePiece(currmove.ReturnPiece(),
@@ -39,6 +54,21 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 	  board.placePiece(currmove.ReturnPiece(),
 			   currmove.ReturnX(),
 			   currmove.ReturnY());
+	}
+	else if (!player2.isDone() && strategy2 == 3) {
+		currmove = player2.aim_for_center(board, 2, possmoves);
+		board.placePiece(currmove.ReturnPiece(),
+			currmove.ReturnX(),
+			currmove.ReturnY());
+	}
+	else if (!player2.isDone() && strategy2 == 4) {
+		currmove = player2.aim_for_corner(board, 2, possmoves);
+		board.placePiece(currmove.ReturnPiece(),
+			currmove.ReturnX(),
+			currmove.ReturnY());
+	}
+	else {
+		possmoves << "2:0,";
 	}
 	if(!player3.isDone() && strategy3==1){
 	  currmove = player3.choose_random_move_from_vector(board, 3,possmoves);
@@ -53,6 +83,21 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 			   currmove.ReturnX(),
 			   currmove.ReturnY());
 	}
+	else if (!player3.isDone() && strategy3 == 3) {
+		currmove = player3.aim_for_center(board, 3, possmoves);
+		board.placePiece(currmove.ReturnPiece(),
+			currmove.ReturnX(),
+			currmove.ReturnY());
+	}
+	else if (!player3.isDone() && strategy3 == 4) {
+		currmove = player3.aim_for_corner(board, 3, possmoves);
+		board.placePiece(currmove.ReturnPiece(),
+			currmove.ReturnX(),
+			currmove.ReturnY());
+	}
+	else {
+		possmoves << "3:0,";
+	}
 	if(!player4.isDone() && strategy4==1){
 	  currmove = player4.choose_random_move_from_vector(board, 4,possmoves);
 	  board.placePiece(currmove.ReturnPiece(),
@@ -65,6 +110,22 @@ void Game::playcustom(int strategy1, int strategy2, int strategy3, int strategy4
 			   currmove.ReturnX(),
 			   currmove.ReturnY());
 	}
+	else if (!player4.isDone() && strategy4 == 3) {
+		currmove = player4.aim_for_center(board, 4, possmoves);
+		board.placePiece(currmove.ReturnPiece(),
+			currmove.ReturnX(),
+			currmove.ReturnY());
+	}
+	else if (!player4.isDone() && strategy4 == 4) {
+		currmove = player4.aim_for_corner(board, 4, possmoves);
+		board.placePiece(currmove.ReturnPiece(),
+			currmove.ReturnX(),
+			currmove.ReturnY());
+	}
+	else {
+		possmoves << "4:0,";
+	}
+	board.print();
 	cout << endl;
       }
       board.print();

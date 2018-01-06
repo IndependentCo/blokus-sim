@@ -7,14 +7,14 @@
 #include "Move.hpp"
 #include <fstream>
 #include <iostream>
+#include <cmath>
 using namespace std;
 class AI
 {
 public:
   AI(int player);
-  void place_randomly(Board board, int player);
-  void place_biggest(Board board, int player);
-  void aim_for_center(Board board, int player);
+  Move aim_for_center(Board board, int player, ofstream &record);
+  Move aim_for_corner(Board board, int player, ofstream &record);
   Move choose_random_highest_move(Board board, int player, ofstream &record);
   Move choose_random_move_from_vector(Board board, int player, ofstream &record);
   bool isDone();

@@ -1,10 +1,6 @@
-//
-//  main.cpp
-//  test_run_piece
-//
-//  Created by Alex Frasca on 11/19/17.
-//  Copyright © 2017 Alex Frasca. All rights reserved.
-//
+//Blokus Sim
+//Created by Michael Hanlon and Alex Frasca, Oct 2017 - Jan 2018
+//Very useful 
 
 #include "Game.hpp"
 #include <time.h>
@@ -13,8 +9,6 @@
 int main() {
   srand((unsigned int)time(NULL));
   Game newgame = Game();
-  newgame.playcustom(2,1,1,1,10,"P1Strat2.txt", "P1Strat2PossMoves.txt");
-  //newgame.play(2,5,"test1.txt","test2.txt");
-  
+  newgame.playcustom(4,4,4,4,1000,"4444.txt", "4444PossMoves.txt");
   return 0;
 }
